@@ -1,7 +1,9 @@
 package br.com.matteusmoreno.cineflow.utils;
 
+import br.com.matteusmoreno.cineflow.client.OmdbClient;
 import br.com.matteusmoreno.cineflow.client.ViaCepClient;
 import br.com.matteusmoreno.cineflow.domain.Address;
+import br.com.matteusmoreno.cineflow.domain.Movie;
 import br.com.matteusmoreno.cineflow.repository.AddressRepository;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +14,13 @@ import java.time.Period;
 public class AppUtils {
 
     private final AddressRepository addressRepository;
+    private final OmdbClient omdbClient;
 
     private final ViaCepClient viaCepClient;
 
-    public AppUtils(AddressRepository addressRepository, ViaCepClient viaCepClient) {
+    public AppUtils(AddressRepository addressRepository, OmdbClient omdbClient, ViaCepClient viaCepClient) {
         this.addressRepository = addressRepository;
+        this.omdbClient = omdbClient;
         this.viaCepClient = viaCepClient;
     }
 
@@ -28,5 +32,9 @@ public class AppUtils {
 
     public Address setAddressAttributes(String cep) {
         return viaCepClient.getAddress(cep);
+    }
+
+    public Movie setMovieAttributes(String title) {
+        return omdbClient.getMovie(title);
     }
 }
