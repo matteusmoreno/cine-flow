@@ -34,7 +34,6 @@ public class Movie {
     @JsonProperty("Poster")
     private String poster;
     private LocalDateTime addedAt;
-    private LocalDateTime updatedAt;
     private LocalDateTime deletedAt;
     private Boolean active;
 

@@ -9,7 +9,6 @@ CREATE TABLE movies (
     actors VARCHAR(255),
     poster VARCHAR(255),
     added_at DATE,
-    updated_at DATE,
     deleted_at DATE,
     active BOOLEAN
 );

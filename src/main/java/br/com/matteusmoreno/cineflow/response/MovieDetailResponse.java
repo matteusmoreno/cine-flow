@@ -16,13 +16,12 @@ public record MovieDetailResponse(
         String writer,
         String actors,
         LocalDateTime addedAt,
-        LocalDateTime updatedAt,
         LocalDateTime deletedAt,
         Boolean active) {
 
     public MovieDetailResponse(Movie movie) {
         this(movie.getId(), movie.getTitle(), movie.getReleased(), movie.getRuntime(), movie.getGenre(),
-                movie.getDirector(), movie.getWriter(), movie.getActors(), movie.getAddedAt(), movie.getUpdatedAt(),
+                movie.getDirector(), movie.getWriter(), movie.getActors(), movie.getAddedAt(),
                 movie.getDeletedAt(), movie.getActive());
     }
 }

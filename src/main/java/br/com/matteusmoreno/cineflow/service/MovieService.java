@@ -5,10 +5,14 @@ import br.com.matteusmoreno.cineflow.exception.InvalidMovieException;
 import br.com.matteusmoreno.cineflow.exception.MovieAlreadyExistsException;
 import br.com.matteusmoreno.cineflow.repository.MovieRepository;
 import br.com.matteusmoreno.cineflow.request.CreateMovieRequest;
+import br.com.matteusmoreno.cineflow.response.MovieDetailResponse;
 import br.com.matteusmoreno.cineflow.utils.AppUtils;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 public class MovieService {
@@ -38,6 +42,31 @@ public class MovieService {
         movie.setAddedAt(LocalDateTime.now());
         movie.setActive(true);
 
+        movieRepository.save(movie);
+
+        return movie;
+    }
+
+    public Movie movieDetail(UUID id) {
+        return movieRepository.findById(id).orElseThrow();
+    }
+
+    public Page<MovieDetailResponse> listAllMovies(Pageable pageable) {
+        return movieRepository.findAll(pageable).map(MovieDetailResponse::new);
+    }
+
+    public void disableMovie(UUID id) {
+        Movie movie = movieRepository.findById(id).orElseThrow();
+        movie.setDeletedAt(LocalDateTime.now());
+        movie.setActive(false);
+
+        movieRepository.save(movie);
+    }
+
+    public Movie enableMovie(UUID id) {
+        Movie movie = movieRepository.findById(id).orElseThrow();
+        movie.setDeletedAt(null);
+        movie.setActive(true);
         movieRepository.save(movie);
 
         return movie;
