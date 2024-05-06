@@ -34,7 +34,7 @@ public class AppUtils {
         return viaCepClient.getAddress(cep);
     }
 
-    public Movie setMovieAttributes(String title) {
-        return omdbClient.getMovie(title);
+    public Movie setMovieAttributes(String apiKey, String title) {
+        return omdbClient.getMovie(apiKey, title);
     }
 }

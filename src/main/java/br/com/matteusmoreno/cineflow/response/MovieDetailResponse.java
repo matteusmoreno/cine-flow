@@ -2,6 +2,7 @@ package br.com.matteusmoreno.cineflow.response;
 
 import br.com.matteusmoreno.cineflow.domain.Movie;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

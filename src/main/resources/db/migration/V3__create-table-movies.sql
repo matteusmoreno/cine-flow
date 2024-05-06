@@ -1,7 +1,7 @@
 CREATE TABLE movies (
     id BINARY(16) PRIMARY KEY,
     title VARCHAR(255),
-    released DATE,
+    released VARCHAR(255),
     runtime VARCHAR(20),
     genre VARCHAR(255),
     director VARCHAR(255),
